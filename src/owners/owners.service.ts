@@ -1,19 +1,32 @@
+// Packages
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+// Context / Store / Router
+// Components / Classes / Controllers / Services
+// Assets
+// Constants / Models / Interfaces / Types
 import { CreateOwnerInput } from './dto/create-owner.input';
+import { Owner } from './entities/owner.entity';
 import { UpdateOwnerInput } from './dto/update-owner.input';
+// Utils / Methods / Mocks
+// Styles
 
 @Injectable()
 export class OwnersService {
+  constructor(@InjectRepository(Owner) private ownersRepository: Repository<Owner>) {}
+
   create(createOwnerInput: CreateOwnerInput) {
-    return 'This action adds a new owner';
+    const newOwner: Owner = this.ownersRepository.create(createOwnerInput);
+    return this.ownersRepository.save(newOwner);
   }
 
   findAll() {
-    return `This action returns all owners`;
+    return this.ownersRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} owner`;
+    return this.ownersRepository.findOneOrFail(id);
   }
 
   update(id: number, updateOwnerInput: UpdateOwnerInput) {

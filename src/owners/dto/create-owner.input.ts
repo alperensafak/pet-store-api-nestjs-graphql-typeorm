@@ -7,4 +7,5 @@ export class CreateOwnerInput {
   @Field()
   name: string;
 
+
 }
