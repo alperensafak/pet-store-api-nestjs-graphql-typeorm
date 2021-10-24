@@ -9,7 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-    autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
   }), PetsModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
