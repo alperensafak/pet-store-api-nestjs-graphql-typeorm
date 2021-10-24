@@ -19,4 +19,8 @@ export class PetsService {
     return this.petsRepository.find(); //select * pet
 
 }
+
+async findOne(id:number):Promise<Pet>{
+return this.petsRepository.findOneOrFail(id)
+  }
 }
